@@ -1,7 +1,7 @@
 require("dotenv").config();
 const cors = require("cors")
 const express = require("express")
-const eventsRoutes = require("./router/events")
+const attractionsRoutes = require("./router/attractions")
 // Routes
 
 /**
@@ -12,9 +12,11 @@ const app = express()
 
 app.use(express.json())
 
-app.use("/api/events", eventsRoutes)
+app.use(cors({
+    origin: "http://localhost:8081"
+  }));
 
-app.use(cors())
+app.use("/api/attractions", attractionsRoutes)
 
 app.listen(4000, () => {
     console.log("App up and running")

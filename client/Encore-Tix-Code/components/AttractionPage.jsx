@@ -1,10 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { useRoute } from '@react-navigation/native';
 
-const SplashPage = () => {
+const attractionPage = () => {
+  const route = useRoute();
+  const { attractionId } = route.params;
   return (
     <View style={styles.container}>
-      <Text>SplashPage</Text>
+      <Text>{attractionId}</Text>
     </View>
   );
 };
@@ -17,4 +20,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SplashPage;
+export default EventPage;

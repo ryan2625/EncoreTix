@@ -1,12 +1,14 @@
 {
   "expo": {
     "scheme": "acme",
+    "splash": {
+      "image" : "./Encore-Tix-Code/assets/images/Splash.png",
+      "resizeMode" : "contain",
+      "backgroundColor" : "#000000"
+    },
     "web": {
       "bundler": "metro"
     },
-    "plugins": [
-      "expo-router"
-    ],
     "name": "client",
     "slug": "client"
   }
