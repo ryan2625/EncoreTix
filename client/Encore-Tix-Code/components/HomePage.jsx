@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Image, TouchableOpacity, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { COLORS } from "../assets/theme";
 
 const HomePage = () => {
-
-  //clicked is a depednecy in the useEffect to ensure searchTerm is up to date and the state is accurate
-
   const navigation = useNavigation();
-  const [attractions, setAttractions] = useState({})
-  const [searchTerm, setSearchTerm] = useState("Phish")
+  const [attractions, setAttractions] = useState({});
+  const [searchTerm, setSearchTerm] = useState("Phish");
   const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
@@ -30,7 +27,6 @@ const HomePage = () => {
         throw new Error('404 Not Found');
       }
       const data = await response.json();
-      console.log('Fetched data:', data);
       setAttractions(data);
     } catch (error) {
       console.error('Error fetching attractions:', error);
@@ -41,8 +37,21 @@ const HomePage = () => {
     setSearchTerm(text);
   }
 
+  const renderItem = ({ item }) => (
+    <TouchableOpacity
+      onPress={() => navigation.navigate('Attraction', { attractionId: item.id })}
+      style={styles.attractionContainer}
+    >
+      <Image
+        source={item.images ? { uri: item.images[0].url } : require('../assets/images/placeholder.jpg')}
+        style={styles.attractionImage}
+      />
+      <Text style={styles.attractionName}>{item.name}</Text>
+    </TouchableOpacity>
+  );
+
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.searchButtonContainer}>
         <View style={{ flex: 2 }}>
           <View style={styles.searchContainer}>
@@ -65,28 +74,18 @@ const HomePage = () => {
         </View>
       </View>
       {attractions.attractionData && attractions.attractionData._embedded?.attractions.length > 0 ? (
-        <View style={styles.attractionsContainer}>
-          {attractions.attractionData._embedded?.attractions.map((attraction, index) => (
-            <TouchableOpacity
-              key={index}
-              onPress={() => navigation.navigate('attraction', { attractionId: attraction.id })}
-              style={styles.attractionContainer}
-            >
-              <Image
-                source={attraction.images ? { uri: attraction.images[0].url } : require('../assets/images/placeholder.jpg')}
-                style={styles.attractionImage}
-              />
-              <Text style={styles.attractionName}>{attraction.name}</Text>
-            </TouchableOpacity>
-          ))}
-        </View>
+        <FlatList
+          data={attractions.attractionData._embedded?.attractions}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id.toString()}
+          style={styles.attractionsContainer}
+        />
       ) : (
         <View style={styles.placeholderContainer}>
           <Image source={require('../assets/images/404.png')} style={styles.placeholderImage} />
         </View>
       )}
-    </ScrollView>
-
+    </View>
   );
 };
 
@@ -128,9 +127,6 @@ const styles = StyleSheet.create({
     width: "100%"
   },
   attractionsContainer: {
-    flexDirection: 'column',
-    alignItems: 'stretch',
-    gap: 15,
     marginTop: 20,
     paddingBottom: 75
   },
@@ -140,6 +136,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: 'row',
     backgroundColor: "#ffffff",
+    marginBottom: 15,
   },
   attractionImage: {
     width: 150,

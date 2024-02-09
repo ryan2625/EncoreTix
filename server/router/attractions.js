@@ -13,6 +13,6 @@ const { getAllAttractions, getOneAttraction } = require("../controller/attractio
 const router = express.Router()
 
 router.get("/:searchTerm", getAllAttractions)
-router.get("/:id", getOneAttraction)
+router.get("/one/:id", getOneAttraction)
 
 module.exports = router;
