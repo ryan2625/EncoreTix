@@ -59,6 +59,8 @@ npm start
 
 The backend is hosted externally on Cyclic.sh, so you don't need to set the server up locally.
 
+The repo for the hosted backend (as cyclic.sh only allows you to host 1 app per github profile and I met this limit already. The server code in that repo is identical to the server code in this repo): https://github.com/Westbrook1000/hosted-tix
+
 ## Images
 
 Splash Screen: 
