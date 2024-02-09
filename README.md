@@ -55,7 +55,10 @@ npm install
 npm start
 ```
 
-5. Then scan the QR code with your phone camera or a QR scanner to view the app.
+5. Scan the QR code with your phone camera or a QR scanner to view the app.
+   
+   -The app will take a few seconds to build, but the QR code will display in the terminal when ready.
+
 
 The backend is hosted externally on Cyclic.sh, so you don't need to set the server up locally.
 
