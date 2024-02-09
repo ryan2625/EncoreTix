@@ -1,1 +1,58 @@
-BlueTread assessment: EncoreTix.
+# EncoreTix
+
+Date: 2/9/2024
+
+Author: Ryan Freas
+
+Frontend: React native with Expo 
+
+Backend: Express.js
+
+<hr/>
+
+EncoreTix is a mobile application that lets you search for different attractions, allowing the user to view each attraction and its respective upcoming events, along with external links providing more information about the events.
+
+| METHOD:    URL:                                        // DESCRIPTION                                    |
+|---------------------------------------------------------------------------------------------------------------------|
+| GET:  https://better-lime-cheetah.cyclic.app/api/attractions/one/:id      // Get attraction by ID                   |
+| GET:  https://better-lime-cheetah.cyclic.app/api/attractions/:searchTerm  // Get attractions, filter by search term |
+
+<hr/>
+
+## Requirements
+
+You must have [Node.js LTS release](https://nodejs.org/en/) installed on your machine.
+
+
+Additionally, [download Git](https://git-scm.com/) for source control.
+
+
+Install [Expo Go](https://expo.dev/client) on your phone from the app store.
+
+## Getting started
+
+1. Clone this repository on your localmachine: 
+
+```
+ git clone https://github.com/ryan2625/EncoreTix.git
+```
+
+2. Go to the project directory
+
+```
+cd EncoreTix/client
+```
+
+3. Install dependencies
+
+```
+npm install
+```
+
+4. Run app
+
+```
+npm start
+```
+
+5. Then scan the QR code with your phone camera or a QR scanner to view the app.
