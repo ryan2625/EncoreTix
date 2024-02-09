@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, Linking, FlatList } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Linking, FlatList, ActivityIndicator } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import moment from "moment"
 import { COLORS } from "../assets/theme"
+
+//NOTE: Warning, data may have fault property which will throttle the API calls. This may cause the data
+//To not be displayed when opening an attraction page.
 
 const AttractionPage = () => {
 
@@ -10,14 +13,16 @@ const AttractionPage = () => {
   const { attractionId } = route.params;
   const [attraction, setAttraction] = useState({})
   const [events, setEvents] = useState({})
-  
+  const [loader, setLoader] = useState(true)
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await fetch(`https://better-lime-cheetah.cyclic.app/api/attractions/one/${attractionId}`);
         const json = await res.json();
         setAttraction(json.singleData);
-        setEvents(json.eventData)
+        setEvents(json.eventData);
+        setLoader(false)
       } catch (err) {
         console.error(err);
       }
@@ -41,13 +46,13 @@ const AttractionPage = () => {
     <TouchableOpacity onPress={() => handleLinkPress(item.url)}>
       <View style={styles.individualEvent}>
         <Image
-          source={item.images ? { uri: item.images[0].url } : require('../assets/images/placeholder.jpg')}
+          source={item.images ? { uri: item.images[0]?.url } : require('../assets/images/placeholder.jpg')}
           style={styles.eventImage}
         />
-        <View style={{  justifyContent: "center"}}>
-          <Text>{formatDate(item.dates?.start?.localDate)}</Text>
-          <Text style={{fontWeight: "bold", marginTop: 5, marginBottom: 5}}>{item.name}</Text>
-          <Text>{item._embedded?.venues[0]?.name}, {item._embedded?.venues[0]?.city?.name}, {item._embedded?.venues[0]?.state?.stateCode}</Text>
+        <View style={{ justifyContent: "center", width: 185 }}>
+          <Text numberOfLines={1}>{formatDate(item.dates?.start?.localDate)}</Text>
+          <Text numberOfLines={1} style={{ fontWeight: "bold", marginTop: 5, marginBottom: 5, width: "100%" }}>{item.name}</Text>
+          <Text numberOfLines={1} >{item._embedded?.venues?.[0]?.name}, {item._embedded?.venues?.[0]?.city?.name}, {item._embedded?.venues?.[0]?.state?.stateCode}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -78,12 +83,24 @@ const AttractionPage = () => {
           </TouchableOpacity>
         </View>
       </View>
-      <FlatList
-        data={events._embedded?.events}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
-        style={styles.eventsContainer}
-      />
+      {loader ? (
+        <View style={styles.loaderContainer}>
+          <ActivityIndicator size="large" color={COLORS.PRIMARY_COLOR} />
+        </View>
+      ) : (
+        <View style={{ height: "100%", flex: 1 }}>
+          {events._embedded?.events ? (
+            <FlatList
+              data={events._embedded.events}
+              renderItem={renderItem}
+              keyExtractor={(item) => item.id.toString()}
+              style={styles.eventsContainer}
+            />
+          ) : (
+            <Text style={{ textAlign: "center" }}>No upcoming events</Text>
+          )}
+        </View>
+      )}
     </View>
   );
 };
@@ -92,6 +109,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.ET_XLIGHT_BLUE
+  },
+  loaderContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1
   },
   mainImage: {
     width: "100%",
@@ -113,7 +135,7 @@ const styles = StyleSheet.create({
   },
   eventsContainer: {
     marginBottom: 15,
-    padding: 15
+    padding: 15,
   },
   eventImage: {
     height: 120,
