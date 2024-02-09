@@ -1,4 +1,5 @@
-//Get all Attractions
+//Retrieves a list of attractions, filtering by the user's search parameters.
+
 const getAllAttractions = async (req, res) => {
     try {
         const { searchTerm } = req.params
@@ -10,7 +11,8 @@ const getAllAttractions = async (req, res) => {
     }
 }
 
-//Get one Attraction by ID
+//Retrieves the attraction details of one attraction, as well as making a call to get the upcoming events for that attraction
+
 const getOneAttraction = async (req, res) => {
     try {
         const { id } = req.params

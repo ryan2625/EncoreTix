@@ -2,18 +2,22 @@ require("dotenv").config();
 const cors = require("cors")
 const express = require("express")
 const attractionsRoutes = require("./router/attractions")
-// Routes
 
 /**
- * Backend for Encoretix
+ * Backend for EncoreTix in Express.js. 
+ * 
+ * Our backend has one router, with 2 endpoints fetching data from Ticketmaster's discovery API.
+ * We also use dotenv to hide our API key and cors to allow cross origin requests. 
  */
 
 const app = express()
 
 app.use(express.json())
 
+//Allow requests from anywhere
+
 app.use(cors({
-    origin: "http://localhost:8081"
+    origin: "*"
   }));
 
 app.use("/api/attractions", attractionsRoutes)
