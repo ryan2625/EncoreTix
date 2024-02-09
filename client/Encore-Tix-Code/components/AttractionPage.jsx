@@ -29,14 +29,14 @@ const AttractionPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`https://better-lime-cheetah.cyclic.app/api/attractions/one/${attractionId}`);
+        const res = await fetch(`https://busy-lime-binturong-garb.cyclic.app/api/attractions/one/${attractionId}`);
         const json = await res.json();
+        setAttraction(json.singleData);
         //console.log(json.eventData.hasOwnProperty("fault"))
         if (json.eventData.hasOwnProperty("fault") && !(mounted)) {
           setMounted(true)
           setTimeout(fetchData, 2000);
         } else {
-          setAttraction(json.singleData);
           setEvents(json.eventData);
           setLoader(false);
         }
