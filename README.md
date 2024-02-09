@@ -56,3 +56,19 @@ npm start
 ```
 
 5. Then scan the QR code with your phone camera or a QR scanner to view the app.
+
+The backend is hosted externally on Cyclic.sh, so you don't need to set the server up locally.
+
+## Images
+
+Splash Screen: 
+
+<img src="encore2.jpg" alt="Encore2" width="300"/>
+
+Home Page:
+
+<img src="encore3.jpg" alt="Encore3" width="300"/>
+
+Attraction Details:
+
+<img src="encore1.jpg" alt="Encore1" width="300"/>
