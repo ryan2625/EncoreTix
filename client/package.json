@@ -17,6 +17,7 @@
     "expo-linking": "~6.2.2",
     "expo-splash-screen": "~0.26.3",
     "expo-status-bar": "~1.11.1",
+    "moment": "^2.30.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "^0.73.4",

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, Linking, FlatList } from 'react-native';
 import { useRoute } from '@react-navigation/native';
+import moment from "moment"
 import { COLORS } from "../assets/theme"
 
 const AttractionPage = () => {
@@ -9,7 +10,7 @@ const AttractionPage = () => {
   const { attractionId } = route.params;
   const [attraction, setAttraction] = useState({})
   const [events, setEvents] = useState({})
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -25,19 +26,27 @@ const AttractionPage = () => {
   }, []);
 
   const handleLinkPress = (url) => {
+    if (!url) {
+      return
+    }
     Linking.openURL(url);
   };
 
+  const formatDate = (date) => {
+    const formattedDate = moment(date).format('dddd, MMMM DD, YYYY');
+    return formattedDate.toUpperCase();
+  }
+
   const renderItem = ({ item }) => (
     <TouchableOpacity onPress={() => handleLinkPress(item.url)}>
-      <View>
+      <View style={styles.individualEvent}>
         <Image
           source={item.images ? { uri: item.images[0].url } : require('../assets/images/placeholder.jpg')}
           style={styles.eventImage}
         />
-        <View>
-          <Text>{item.dates?.start?.localDate}</Text>
-          <Text>{item.name}</Text>
+        <View style={{  justifyContent: "center"}}>
+          <Text>{formatDate(item.dates?.start?.localDate)}</Text>
+          <Text style={{fontWeight: "bold", marginTop: 5, marginBottom: 5}}>{item.name}</Text>
           <Text>{item._embedded?.venues[0]?.name}, {item._embedded?.venues[0]?.city?.name}, {item._embedded?.venues[0]?.state?.stateCode}</Text>
         </View>
       </View>
@@ -103,14 +112,20 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   eventsContainer: {
-    height: 125,
-    width: "100%",
-    gap: 10
+    marginBottom: 15,
+    padding: 15
   },
   eventImage: {
-    width: 150,
-    height: 75,
-    marginRight: 10,
+    height: 120,
+    width: "100%",
+    maxWidth: 150,
+    marginRight: 10
+  },
+  individualEvent: {
+    height: 120,
+    flexDirection: "row",
+    backgroundColor: "#ffffff",
+    marginBottom: 15
   }
 });
 

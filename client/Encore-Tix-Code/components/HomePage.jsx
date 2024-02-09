@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: 'row',
     backgroundColor: "#ffffff",
-    marginBottom: 15,
+    marginBottom: 15
   },
   attractionImage: {
     width: 150,
