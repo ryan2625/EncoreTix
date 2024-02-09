@@ -14,7 +14,7 @@ const AttractionPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`http://192.168.1.144:4000/api/attractions/one/${attractionId}`);
+        const res = await fetch(`https://better-lime-cheetah.cyclic.app/api/attractions/one/${attractionId}`);
         const json = await res.json();
         setAttraction(json.singleData);
         setEvents(json.eventData)

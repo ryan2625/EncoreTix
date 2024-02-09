@@ -22,7 +22,7 @@ const HomePage = () => {
 
   async function handlePress() {
     try {
-      const response = await fetch(`http://192.168.1.144:4000/api/attractions/${searchTerm}`);
+      const response = await fetch(`https://better-lime-cheetah.cyclic.app/api/attractions/${searchTerm}`);
       if (!response.ok) {
         throw new Error('404 Not Found');
       }
