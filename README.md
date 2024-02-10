@@ -31,7 +31,7 @@ Install [Expo Go](https://expo.dev/client) on your phone from the app store.
 
 ## Getting started
 
-1. Clone this repository on your localmachine: 
+1. Clone this repository on your local machine: 
 
 ```
  git clone https://github.com/ryan2625/EncoreTix.git
