@@ -13,9 +13,9 @@ Backend: Express.js
 EncoreTix is a mobile application that lets you search for different attractions, allowing the user to view each attraction and its respective upcoming events, along with external links providing more information about the events.
 
 | METHOD:    URL:                                        // DESCRIPTION                                    |
-|---------------------------------------------------------------------------------------------------------------------|
-| GET:  https://better-lime-cheetah.cyclic.app/api/attractions/one/:id      // Get attraction by ID                   |
-| GET:  https://better-lime-cheetah.cyclic.app/api/attractions/:searchTerm  // Get attractions, filter by search term |
+|--------------------------------------------------------------------------------------------------------------------------|
+| GET:  https://busy-lime-binturong-garb.cyclic.app/api/attractions/one/:id      // Get attraction by ID                   |
+| GET:  https://busy-lime-binturong-garb.cyclic.app/api/attractions/:searchTerm  // Get attractions, filter by search term |
 
 <hr/>
 
