@@ -27,7 +27,7 @@ You must have [Node.js LTS release](https://nodejs.org/en/) installed on your ma
 Additionally, [download Git](https://git-scm.com/) for source control.
 
 
-Install [Expo Go](https://expo.dev/client) on your phone from the app store.
+Install [Expo Go](https://expo.dev/client) on your phone from the app store and create an account.
 
 ## Getting started
 
