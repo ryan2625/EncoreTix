@@ -40,7 +40,7 @@ const HomePage = () => {
 
   async function handlePress() {
     try {
-      const response = await fetch(`https://busy-lime-binturong-garb.cyclic.app/api/attractions/${searchTerm}`);
+      const response = await fetch(`https://hosted-tix.onrender.com/api/attractions/${searchTerm}`);
       if (!response.ok) {
         throw new Error('404 Not Found');
       }
