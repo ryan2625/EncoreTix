@@ -60,7 +60,7 @@ npm start
    -The app will take a few seconds to build, but the QR code will display in the terminal when ready.
 
 
-The backend is hosted externally on Cyclic.sh, so you don't need to set the server up locally.
+The backend is hosted externally on Cyclic.sh, so you don't need to set the server up locally. UPDATE 2024: Now hosted on Render, as cyclic has shut down. Please allow a few minutes for the server to come online when running the app.
 
 The repo for the hosted backend (as cyclic.sh only allows you to host 1 app per github profile and I met this limit already. The server code in that repo is identical to the server code in this repo): https://github.com/Westbrook1000/hosted-tix
 
