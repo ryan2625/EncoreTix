@@ -14,8 +14,8 @@ EncoreTix is a mobile application that lets you search for different attractions
 
 | METHOD:    URL:                                        // DESCRIPTION                                    |
 |--------------------------------------------------------------------------------------------------------------------------|
-| GET:  https://busy-lime-binturong-garb.cyclic.app/api/attractions/one/:id      // Get attraction by ID                   |
-| GET:  https://busy-lime-binturong-garb.cyclic.app/api/attractions/:searchTerm  // Get attractions, filter by search term |
+| GET:  https://hosted-tix.onrender.com/api/attractions/one/:id      // Get attraction by ID                   |
+| GET:  https://hosted-tix.onrender.com/api/attractions/:searchTerm  // Get attractions, filter by search term |
 
 <hr/>
 
